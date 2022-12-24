@@ -1,0 +1,28 @@
+---
+- name: Install redis-server package
+  apt: 
+    name: '{{item}}'
+    state: present
+    update-cache: yes
+  with_items:
+    - redis-server
+
+- name: Listen on public interface
+  lineinfile: 
+    path: /etc/redis/redis.conf
+    regexp: "^bind"
+    line: "#bind"
+    state: present
+    backup: yes
+  notify: restart redis
+
+- name: Django | Allow traffic from application through firewall
+  ufw: 
+    rule: allow
+    proto: any
+    port: 6379
+    from_ip: "193.151.140.70/24"
+  with_items: groups.get('application')
+  tags:
+    - firewall
+    - redis

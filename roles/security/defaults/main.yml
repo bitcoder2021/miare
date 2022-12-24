@@ -1,0 +1,14 @@
+---
+server_user: 'root'
+
+server_user_password: '{{sudo_user_password}}'
+
+perform_aptitude_dist_upgrade: true
+
+force_ssh_authentication: true
+
+enable_unattended_upgrades: true
+
+enable_ufw: true
+
+enable_fail2ban: false

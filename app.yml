@@ -1,0 +1,19 @@
+---
+- name: Setup application with all dependencies
+  hosts: application
+  become: true
+  become_user: root
+  remote_user: '{{server_user}}'
+  vars:
+    update_apt_cache: true
+  module_defaults:
+    apt:
+      force_apt_get: true
+
+  roles:
+    - server
+    # - ssl
+    - redis
+    - django
+    - celery
+    - nginx

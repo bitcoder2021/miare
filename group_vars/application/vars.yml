@@ -1,0 +1,56 @@
+---
+
+git_repo: https://github.com/miare-ir/SREInterview.git
+
+project_name: miare
+application_name: miareapp
+
+enable_deadsnakes_ppa: true
+virtualenv_python_version: python3.9
+
+
+# Git settings.
+setup_git_repo: true
+git_branch: main
+
+
+# Security settings.
+# server_user: "root"
+sudo_user_password: $6$rounds=656000$ca2RWJgtEqDVpOp9$0S0N3GHjOIO1PwRZ0vDyr0Z5Pi8ZcEa8.r.T.Wsx.O8RZlpTV1w0BLoEWwDb.zTkJOmP1Re.zBfQsviZaP89m0
+
+
+# Database settings.
+db_user: '{{application_name}}'
+db_name: '{{application_name}}'
+db_password: password
+
+gunicorn_num_workers: 3
+gunicorn_max_requests: 0
+gunicorn_timeout_seconds: 300
+
+# Celery settings.
+celery_num_workers: 2
+
+
+# Application settings.
+django_settings_file: "{{application_name}}.settings.development"
+django_secret_key: "akr2icmg1n8%z^3fe3c+)5d0(t^cy-2_25rrl35a7@!scna^1#"
+
+celery_broker: "redis://localhost:6379/0"
+
+requirements_file: "{{project_path}}/requirements.txt"
+
+run_django_db_migrations: false
+run_django_collectstatic: false
+
+
+# Nginx settings.
+ssl_crt: |
+  -----BEGIN CERTIFICATE-----
+  certificate content
+  -----END CERTIFICATE-----
+
+ssl_key: |
+  -----BEGIN PRIVATE KEY-----
+  private key content
+  -----END PRIVATE KEY-----

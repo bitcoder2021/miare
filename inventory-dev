@@ -1,0 +1,5 @@
+[application]
+193.151.140.70 nginx_use_letsencrypt=true
+
+[database]
+193.151.140.70

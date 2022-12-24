@@ -1,0 +1,16 @@
+---
+- name: Setup databse service for application
+  hosts: database
+  become: true
+  become_user: root
+  remote_user: '{{server_user}}'
+  vars:
+    update_apt_cache: true
+
+  module_defaults:
+    apt:
+      force_apt_get: true
+
+  roles:
+    - server
+    - postgres
